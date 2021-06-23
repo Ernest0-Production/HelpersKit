@@ -9,14 +9,17 @@ import UIKit
 
 
 public extension UIImage {
+    /// if iOS 13, use .withTintColor(_ color:)
     func tintColor(_ color: UIColor) -> UIImage {
-        var image = withRenderingMode(.alwaysTemplate)
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        
         color.set()
         
-        image.draw(in: CGRect(origin: .zero, size: size))
-        image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return image
+        self
+            .withRenderingMode(RenderingMode.alwaysTemplate)
+            .draw(in: CGRect(origin: .zero, size: size))
+        
+        return UIGraphicsGetImageFromCurrentImageContext()!
     }
 }
