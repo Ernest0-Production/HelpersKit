@@ -8,6 +8,8 @@
 public extension Bool {
     var isFalse: Bool { !self }
     
+    var isTrue: Bool { self }
+    
     func map<T>(
         onTrue: () throws -> T,
         onFalse: () throws -> T
