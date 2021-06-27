@@ -33,7 +33,10 @@ let package = Package(
         
         .target(
             name: "RxCoreHelpersKit",
-            dependencies: [.product(name: "RxRelay", package: "RxSwift")]
+            dependencies: [
+                "CoreHelpersKit",
+                .product(name: "RxRelay", package: "RxSwift")
+            ]
         ),
         
         .target(

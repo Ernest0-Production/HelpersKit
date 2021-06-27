@@ -8,16 +8,8 @@
 import RxSwift
 import RxCocoa
 import Foundation
+import RxCoreHelpersKit
 
-
-public extension Disposable {
-    ///  ~~~
-    /// items.bind(to: collectionView)(cellFactory).dispose(whenDealloc: collectionView)
-    ///  ~~~
-    func dispose(whenDealloc object: NSObject) {
-        _ = object.rx.deallocated.subscribe(onDisposed: dispose)
-    }
-}
 
 public extension ReactiveCompatible where Self: NSObject {
     ///  ~~~

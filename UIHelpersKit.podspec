@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "UIHelpersKit"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.2"
   spec.summary      = "Universal swift/functinal/uikit/rxswift helpers"
   spec.homepage     = "https://github.com/Ernest0-Production/HelpersKit"
   spec.license      = { :type => "MIT", :file => "LICENSE" }

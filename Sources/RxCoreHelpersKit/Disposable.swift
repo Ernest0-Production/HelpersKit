@@ -6,12 +6,20 @@
 //
 
 import RxSwift
+import CoreHelpersKit
 
 
 public extension Disposable {
     /// ⚠️ Рекомендуется использовать ТОЛЬКО на подписке на Single, Completable.
     /// У Observable нет поведения автозавершения из-за неограниченности количества событий, поэтому подписка может жить всю жизнь приложения
     func ignoringDispose() {}
+    
+    ///  ~~~
+    /// items.bind(to: collectionView)(cellFactory).dispose(whenDealloc: collectionView)
+    ///  ~~~
+    func dispose(whenDealloc object: AnyObject) {
+        whenDeallocated(object, dispose)
+    }
 }
 
 extension Array: Disposable where Element == Disposable? {
