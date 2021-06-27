@@ -4,7 +4,6 @@ Pod::Spec.new do |spec|
   spec.version      = "0.0.2"
   spec.summary      = "Universal swift/functinal/uikit/rxswift helpers"
   spec.homepage     = "https://github.com/Ernest0-Production/HelpersKit"
-  spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.author             = { "Ernest" => "magatar136@yandex.ru" }
   spec.social_media_url   = "https://t.me/Ernest0n"
 
