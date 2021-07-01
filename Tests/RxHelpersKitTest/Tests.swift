@@ -79,4 +79,34 @@ final class Tests: XCTestCase {
         function(0)
         XCTAssertEqual(counter, 6)
     }
+    
+    func test_imageView_resizable() {
+        let imageView: UIImageView = UIImageView(image: UIImage(size: CGSize.square(1)))
+        
+        imageView.resizable()
+
+        XCTAssertEqual(imageView.constraints.count, 1)
+    }
+}
+
+private extension UIImage {
+    convenience init?(size: CGSize) {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        UIColor.clear.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let cgImage = image?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
+    }
+}
+
+private final class Weak<T: AnyObject> {
+    init(value: T) {
+        self.value = value
+    }
+    
+    weak var value: T?
 }

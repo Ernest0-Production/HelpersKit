@@ -10,8 +10,9 @@ import CoreHelpersKit
 
 
 public extension UIImageView {
+    @discardableResult
     func resizable() -> Self {
-        let token = observe(\.image) { [weak self] object, change in
+        let token = (self as UIImageView).observe(\.image, options: [.initial, .old, .new]) { [weak self] object, change in
             if let image = change.newValue {
                 self?.addAspectRatioConstraint(image: image)
             }
@@ -22,18 +23,20 @@ public extension UIImageView {
         return self
     }
     
+    static let resizableConstraintIdentifier = "resizableConstraintIdentifier"
+    
     private func addAspectRatioConstraint(image: UIImage?) {
-        let resizableConstraintIdentifier = "resizableConstraintIdentifier"
-        
-        for constraint in self.constraints where constraint.identifier == resizableConstraintIdentifier {
-            removeConstraint(constraint)
-        }
-        
         guard let image = image else {
             return
         }
         
         let aspectRatio = image.size.width / image.size.height
+        
+        guard aspectRatio.isNormal else {
+            removeAspectRatioConstraint()
+            return
+        }
+        
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .width,
@@ -44,8 +47,14 @@ public extension UIImageView {
             constant: 0.0
         )
         
-        constraint.identifier = resizableConstraintIdentifier
+        constraint.identifier = Self.resizableConstraintIdentifier
         
         addConstraint(constraint)
+    }
+    
+    private func removeAspectRatioConstraint() {
+        for constraint in self.constraints where constraint.identifier == Self.resizableConstraintIdentifier {
+            removeConstraint(constraint)
+        }
     }
 }
