@@ -6,20 +6,25 @@
 //
 
 import UIKit
+import func AVFoundation.AVMakeRect
 
 
 public extension UIImage {
     /// if iOS 13, use .withTintColor(_ color:)
     func tintColor(_ color: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        defer { UIGraphicsEndImageContext() }
-        
-        color.set()
-        
-        self
-            .withRenderingMode(RenderingMode.alwaysTemplate)
-            .draw(in: CGRect(origin: .zero, size: size))
-        
-        return UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsImageRenderer(size: size).image { _ in
+            color.set()
+            withRenderingMode(.alwaysTemplate).draw(at: .zero)
+        }
+    }
+    
+    func scaleToFit(_ targetSize: CGSize) -> UIImage {
+        resized(AVMakeRect(aspectRatio: size, insideRect: .init(origin: .zero, size: targetSize)).size)
+    }
+    
+    func resized(_ newSize: CGSize) -> UIImage {
+        UIGraphicsImageRenderer(size: newSize)
+            .image { _ in draw(in: CGRect(origin: .zero, size: newSize)) }
+            .withRenderingMode(renderingMode)
     }
 }

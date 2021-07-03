@@ -12,6 +12,7 @@ import FunctionalHelpersKit
 import UIHelpersKit
 import RxCoreHelpersKit
 import RxUIHelpersKit
+import AVFoundation
 
 
 final class Tests: XCTestCase {
@@ -86,6 +87,13 @@ final class Tests: XCTestCase {
         imageView.resizable()
 
         XCTAssertEqual(imageView.constraints.count, 1)
+    }
+    
+    func test_image_aspectRatio() {
+        XCTAssertEqual(
+            UIImage(size: CGSize(width: 10, height: 20))!.scaleToFit(.square(40)).size,
+            CGSize(width: 20, height: 40)
+        )
     }
 }
 
