@@ -31,16 +31,6 @@ public func when<Object>(
 }
 
 ///  ~~~
-/// [1,2,3,nil,5].map(onNil(justReturn(2))
-///  ~~~
-public func onNil<Object>(
-    _ fallback: @escaping () -> Object
-) -> (Object?) -> Object {
-    return { $0 ?? fallback() }
-}
-
-
-///  ~~~
 /// isSelectedObservable.map(when(true: Images.like(), false: Images.dislike))
 ///  ~~~
 public func when<Result>(
