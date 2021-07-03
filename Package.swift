@@ -9,6 +9,16 @@ let package = Package(
     platforms: [.iOS(.v11)],
     
     products: [
+        .library(name: "CoreHelpersKit", targets: ["CoreHelpersKit"]),
+        
+        .library(name: "UIHelpersKit", targets: ["UIHelpersKit"]),
+        
+        .library(name: "FunctionalHelpersKit", targets: ["FunctionalHelpersKit"]),
+        
+        .library(name: "RxCoreHelpersKit", targets: ["RxCoreHelpersKit"]),
+        
+        .library(name: "RxUIHelpersKit", targets: ["RxUIHelpersKit"]),
+        
         .library(
             name: "HelpersKit",
             targets: ["CoreHelpersKit", "UIHelpersKit", "FunctionalHelpersKit"]
@@ -27,7 +37,10 @@ let package = Package(
     targets: [
         .target(name: "CoreHelpersKit"),
         
-        .target(name: "UIHelpersKit"),
+        .target(
+            name: "UIHelpersKit",
+            dependencies: ["CoreHelpersKit"]
+        ),
         
         .target(name: "FunctionalHelpersKit"),
         

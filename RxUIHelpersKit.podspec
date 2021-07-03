@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "RxUIHelpersKit"
-  spec.version      = "0.0.2"
+  spec.version      = "0.0.3"
   spec.summary      = "Universal swift/functinal/uikit/rxswift helpers"
   spec.homepage     = "https://github.com/Ernest0-Production/HelpersKit"
   spec.author             = { "Ernest" => "magatar136@yandex.ru" }

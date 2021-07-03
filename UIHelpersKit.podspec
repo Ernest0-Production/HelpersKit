@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "UIHelpersKit"
-  spec.version      = "0.0.2"
+  spec.version      = "0.0.3"
   spec.summary      = "Universal swift/functinal/uikit/rxswift helpers"
   spec.homepage     = "https://github.com/Ernest0-Production/HelpersKit"
   spec.author             = { "Ernest" => "magatar136@yandex.ru" }
@@ -9,13 +9,13 @@ Pod::Spec.new do |spec|
 
   spec.platform     = :ios
   spec.ios.deployment_target = "11.0"
-  spec.swift_versions = '5.0'
+  spec.swift_versions = '5.4'
 
   spec.source       = {
     :git => "https://github.com/Ernest0-Production/HelpersKit.git",
     :branch => "main",
     :tag => "#{spec.version}"
    }
-
+  spec.dependency "CoreHelpersKit"
   spec.source_files  = "Sources/UIHelpersKit/**/*.swift"
 end
