@@ -48,8 +48,7 @@ public extension UIImageView {
         )
         
         constraint.identifier = Self.resizableConstraintIdentifier
-        
-        addConstraint(constraint)
+        constraint.isActive = true
     }
     
     private func removeAspectRatioConstraint() {
