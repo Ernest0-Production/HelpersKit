@@ -15,18 +15,18 @@ public func onNil<Object>(
 }
 
 ///  ~~~
-/// ["1","2",nil].map(optional(\.isEmpty)
+/// ["1","2",nil].map(ifNotNil(\.isEmpty)
 ///  ~~~
-public func optional<Object, Result>(
+public func ifNotNil<Object, Result>(
     _ transform: @escaping (Object) -> Result
 ) -> (Object?) -> Result? {
     return { $0.map(transform) }
 }
 
 ///  ~~~
-/// ["1","2",nil].map(optional(\.isEmpty)
+/// ["1","2",nil].map(ifNotNil(\.isEmpty)
 ///  ~~~
-public func optional<Object, Result>(
+public func ifNotNil<Object, Result>(
     _ transform: @escaping (Object) -> Result?
 ) -> (Object?) -> Result? {
     return { $0.flatMap(transform) }

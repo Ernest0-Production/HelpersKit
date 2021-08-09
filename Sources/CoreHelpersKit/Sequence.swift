@@ -7,10 +7,10 @@
 
 public extension Sequence {
     ///  ~~~
-    /// [1,2,3,4,4,5].transform(Set.init)
-    /// requests.transform(Single.zip)
+    /// [1,2,3,4,4,5].transform(to: Set.init)
+    /// requests.transform(to: Single.zip)
     ///  ~~~
-    func transform<T>(_ selfTransform: (Self) -> T) -> T { selfTransform(self) }
+    func transform<T>(to selfTransform: (Self) -> T) -> T { selfTransform(self) }
     
     /// forEach + return self
     func `do`(_ body: (Element) throws -> Void) rethrows -> Self {
