@@ -7,11 +7,19 @@
 
 
 public extension Collection {
-    subscript (safe index: Index) -> Element? {
+    subscript(safe index: Index) -> Element? {
         indices.contains(index).map(onTrue: self[index], onFalse: nil)
     }
 
     func skipNil<Wrapped>() -> [Wrapped] where Element == Wrapped? {
         compactMap({ $0 })
     }
+}
+
+public extension Collection where Element: Sequence {
+    func flatten() -> [Element] { compactMap({ $0 }) }
+}
+
+public extension LazySequence where Base: Sequence {
+    func flatten() -> [Element] { compactMap({ $0 }) }
 }
