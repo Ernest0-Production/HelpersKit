@@ -64,8 +64,3 @@ public func sorted<S: Sequence>(
 ) -> (S) -> [S.Element] {
     return { $0.sorted(by: areInIncreasingOrder) }
 }
-
-///  ~~~
-/// [[1,2,3], [3,4,5]].flatMap(flatten) // [1,2,3,3,4,5]
-///  ~~~
-public func flatten<T>(_ t: T) -> T { t }

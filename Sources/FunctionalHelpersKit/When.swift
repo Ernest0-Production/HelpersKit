@@ -31,11 +31,24 @@ public func when<Object>(
 }
 
 ///  ~~~
-/// isSelectedObservable.map(when(true: Images.like(), false: Images.dislike))
+/// isSelectedObservable.map(when(true: { Images.like() }, false: { Images.dislike() }))
 ///  ~~~
 public func when<Result>(
     true onTrue: @escaping () -> Result,
     false onFalse: @escaping () -> Result
+) -> (Bool) -> Result {
+    return {
+        if $0 { return onTrue() }
+        else { return onFalse() }
+    }
+}
+
+///  ~~~
+/// isSelectedObservable.map(when(true: Images.like(), false: Images.dislike()))
+///  ~~~
+public func when<Result>(
+    true onTrue: @autoclosure @escaping () -> Result,
+    false onFalse: @autoclosure @escaping () -> Result
 ) -> (Bool) -> Result {
     return {
         if $0 { return onTrue() }
